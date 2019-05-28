@@ -1,0 +1,58 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<PazzoProject_01.ModelsViewModel.EmployeesViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="row">
+    <div class="col-sm-2">
+        @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="col-sm-2">
+        @Html.DisplayNameFor(model => model.BirthDate)
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+</div>
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-sm-2">
+        @Html.DisplayFor(model => item.LastName)
+    </div>
+    <div class="col-sm-2">
+        @Html.DisplayFor(model => item.FirstName)
+    </div>
+    <div class="col-sm-2">
+        @Html.DisplayFor(model => item.Title)
+
+    </div>
+    <div class="col-sm-2">
+        @Html.DisplayFor(model => item.sBirthDate)
+    </div>
+    <div class="col-sm-4">
+        @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
+    </div>
+    }
+</div>
+
+<div class="row">
+    @Html.PagedListPager((IPagedList)Model, x => Url.Action("Index", new { page = x }))
+</div>
